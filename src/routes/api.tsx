@@ -36,7 +36,9 @@ export async function fetchCoins() {
 }
 
 export function fetchCoinInfo(coinId: string) {
-  return fetch(`${BASE_PAPRIKA}/coins`).then((response) => response.json());
+  return fetch(`${BASE_PAPRIKA}/coins/${coinId}`).then((response) =>
+    response.json()
+  );
 }
 
 export function fetchCoinTickers(coinId: string) {
@@ -46,10 +48,10 @@ export function fetchCoinTickers(coinId: string) {
 }
 
 export function fetchCoinHistory(coinId: string) {
-  const endDate = Math.floor(Date.now() / 1000);
-  const startDate = endDate - 60 * 60 * 24 * 7;
+  // const endDate = Math.floor(Date.now() / 1000);
+  // const startDate = endDate - 60 * 60 * 24 * 7;
 
   return fetch(
-    `${BASE_PAPRIKA}/coins/${coinId}/ohlcv/historical?start=${startDate}&end=${endDate}`
+    `https://ohlcv-api.nomadcoders.workers.dev/?coinId=${coinId}`
   ).then((response) => response.json());
 }

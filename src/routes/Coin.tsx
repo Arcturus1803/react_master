@@ -166,6 +166,7 @@ function Coin() {
     ["info", coinId],
     () => fetchCoinInfo(coinId)
   );
+  console.log(infoData);
   const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(
     ["tickers", coinId],
     () => fetchCoinTickers(coinId),

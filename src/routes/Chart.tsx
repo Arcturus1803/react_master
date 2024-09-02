@@ -3,13 +3,13 @@ import { fetchCoinHistory } from "./api";
 import ApexChart from "react-apexcharts";
 
 interface IHistorical {
-  time_open: string;
-  time_close: string;
-  open: number;
-  high: number;
-  low: number;
-  close: number;
-  volume: number;
+  time_open: number;
+  time_close: number;
+  open: string;
+  high: string;
+  low: string;
+  close: string;
+  volume: string;
   market_cap: number;
 }
 
@@ -36,7 +36,7 @@ function Chart({ coinId }: ChartProps) {
           series={[
             {
               name: "Price",
-              data: [1, 2, 3, 4, 8, 4, 9, 8, 7, 10],
+              data: data?.map((price) => parseFloat(price.close)) as number[],
             },
           ]}
           options={{
@@ -67,7 +67,7 @@ function Chart({ coinId }: ChartProps) {
               labels: {
                 show: false,
               },
-              categories: ["a", "b", "a", "b", "a", "b", "a", "b", "a", "b"],
+              categories: data?.map((price) => price.time_close),
               type: "datetime",
             },
             yaxis: {
